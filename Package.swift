@@ -5,17 +5,26 @@ import PackageDescription
 
 let package = Package(
     name: "ffmpeg-mobile",
+    platforms: [
+                .iOS(.v10),
+            ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "ffmpeg-mobile",
-            targets: ["mobile-ffmpeg"]),
+            targets: ["libavcodec","libavutil","libavformat","libavfilter","libavdevice","libswscale","mobileffmpeg"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],
     targets: [
-        //
+        .binaryTarget(name: "libavcodec", path: "libavcodec.xcframework"),
+        .binaryTarget(name: "libavdevice", path: "libavdevice.xcframework"),
+        .binaryTarget(name: "libavfilter", path: "libavfilter.xcframework"),
+        .binaryTarget(name: "libavformat", path: "libavformat.xcframework"),
+        .binaryTarget(name: "libavutil", path: "libavutil.xcframework"),
+        .binaryTarget(name: "libswscale", path: "libswscale.xcframework"),
+        .binaryTarget(name: "mobileffmpeg", path: "mobileffmpeg.xcframework"),
     ]
 )
